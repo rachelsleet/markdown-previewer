@@ -16,10 +16,11 @@ let sampleInput = ` a header (H1 size), a sub header (H2 size), a link, inline c
 
  >Blocking a quote!
 
-![React Logo w/ Text](https://goo.gl/Umyytc)
+![React Logo w/ Text](https://scontent-frx5-1.xx.fbcdn.net/v/t1.0-9/49745714_2119476408108530_2252438745905102848_n.jpg?_nc_cat=101&_nc_ht=scontent-frx5-1.xx&oh=da603137e6bd1cc1551c0831d5511286&oe=5D1CA012)
 
 **pretty neat**
 `;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -39,8 +40,20 @@ class App extends React.Component {
         <header>
           Markdown Previewer
         </header>
-        <textarea id="editor" type='text' value={this.state.input} onChange={this.handleInput}/>
-        <Previewer input={this.state.input}/>
+        <div id="container">
+        <div className="column">
+          <h2 id="editor-title">Editor</h2>
+          <div className="box">
+            <textarea id="editor" type='text' value={this.state.input} onChange={this.handleInput}/>
+          </div>
+        </div>
+        <div className="column">
+          <h2 id="preview-title">Previewer</h2>
+          <div className="box" id="preview-div">
+            <Previewer input={this.state.input}/>
+          </div>
+        </div>
+        </div>
       </div>
     );
   }
@@ -48,12 +61,11 @@ class App extends React.Component {
 
 
 
-class Previewer extends React.Component {
-  render() {
+const Previewer = (props) => {
     return (
-      <MarkdownPreview id="preview" value={this.props.input}/>
+      <MarkdownPreview id="preview" value={props.input}/>
     )
-  }
 }
+
 
 export default App;
