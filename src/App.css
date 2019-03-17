@@ -19,7 +19,7 @@ header {
   margin-bottom: -1em;
 }
 
-#preview-div {
+#preview {
   height: 61vh;
   overflow: auto;
 }

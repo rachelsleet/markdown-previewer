@@ -1,5 +1,5 @@
 import React from 'react';
-import { MarkdownPreview } from 'react-marked-markdown';
+import { MarkdownPreviewer } from './Components/MarkdownPreviewer';
 import './App.css';
 
 let sampleInput = ` a header (H1 size), a sub header (H2 size), a link, inline code, a code block, a list item, a blockquote, an image, and bolded text.
@@ -11,12 +11,12 @@ let sampleInput = ` a header (H1 size), a sub header (H2 size), a link, inline c
 <div></div>
 \`\`\`
 - List 1
-  - List 2
+  - List 2 \`sneaky code\`
    - List 3
 
  >Blocking a quote!
 
-![React Logo w/ Text](https://scontent-frx5-1.xx.fbcdn.net/v/t1.0-9/49745714_2119476408108530_2252438745905102848_n.jpg?_nc_cat=101&_nc_ht=scontent-frx5-1.xx&oh=da603137e6bd1cc1551c0831d5511286&oe=5D1CA012)
+![Christian](https://scontent-frx5-1.xx.fbcdn.net/v/t1.0-9/49745714_2119476408108530_2252438745905102848_n.jpg?_nc_cat=101&_nc_ht=scontent-frx5-1.xx&oh=da603137e6bd1cc1551c0831d5511286&oe=5D1CA012)
 
 **pretty neat**
 `;
@@ -34,6 +34,16 @@ class App extends React.Component {
       input: e.target.value
     })
   }
+
+  componentDidMount() {
+        const script = document.createElement("script");
+        script.src = "https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js";
+        script.async = true;
+        script.type = 'text/javascript'
+        document.body.appendChild(script);
+        console.log(script);
+  }
+
   render() {
     return (
       <div className="App">
@@ -50,21 +60,13 @@ class App extends React.Component {
         <div className="column">
           <h2 id="preview-title">Previewer</h2>
           <div className="box" id="preview-div">
-            <Previewer input={this.state.input}/>
+            <MarkdownPreviewer input={this.state.input}/>
           </div>
         </div>
         </div>
       </div>
     );
   }
-}
-
-
-
-const Previewer = (props) => {
-    return (
-      <MarkdownPreview id="preview" value={props.input}/>
-    )
 }
 
 
